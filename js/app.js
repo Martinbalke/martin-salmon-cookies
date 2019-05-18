@@ -4,18 +4,36 @@
 
 //use the object method to create a number of cookies sold per hour and store that data in an object.
 
-// results of cookies per hour need to be displayed on the page in an unordered list with a total calculated sales 
+// results of cookies per hour need to be displayed on the page in an unordered list with a total calculated sales
 
 //takes in a stores min and max customers and generates a random number of customers per hour
 let customerNumber = function(store){
   return Math.floor(Math.random() * (store.maxCust - store.minCust) + store.minCust);
 };
-//creates an object with the stores random cookies per hour from 6-8pm
+//generates a random number of cookies sold at each store
 let cookiesSold = function(store){
-  let cookiesPerHour = Math.floor(customerNumber(store) * store.avgCookies);
-  return cookiesPerHour;
-
-}
+  return Math.floor(customerNumber(store) * store.avgCookies);
+};
+//logs the cookies sold each hour and pushes them on to the store as an object
+let cookiesPerDay = function(store){
+  let amPM = 'AM';
+  let total = 0;
+  for(let i = 6; i < 22; i++){
+    let cookiesThisHour = 0;
+    cookiesThisHour += cookiesSold(store);
+    if(i < 12){
+      total += cookiesThisHour;
+			store.cookiesSold[`${i} ${amPM}`] = cookiesThisHour;
+		}else if(i === 12){
+			amPM = 'PM';
+			store.cookiesSold[`${i} ${amPM}`] = cookiesThisHour;
+		} else if(i > 13){
+			store.cookiesSold[`${i - 13} ${amPM}`] = cookiesThisHour;
+      total += cookiesThisHour;
+    }
+  }
+  store.cookiesSold.total = total;
+};
 
 let firstAndPike ={
   minCust: 23,
@@ -31,7 +49,7 @@ let seaTacAirport ={
   maxCust: 24,
   avgCookies: 1.2,
   cookiesSold: {
-      
+
   }
 };
 
@@ -40,7 +58,7 @@ let seattleCenter ={
   maxCust: 38,
   avgCookies: 2.3,
   cookiesSold: {
-      
+
   }
 };
 
@@ -49,7 +67,7 @@ let capitolHill = {
   maxCust: 38,
   avgCookies: 2.3,
   cookiesSold: {
-      
+
   }
 };
 
@@ -58,7 +76,8 @@ let alki ={
   maxCust: 16,
   avgCookies: 4.6,
   cookiesSold: {
-      
+
   }
 };
-console.log(cookiesSold(firstAndPike));
+cookiesPerDay(alki);
+console.log(alki.cookiesSold);
