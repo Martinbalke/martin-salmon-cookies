@@ -6,6 +6,13 @@
 
 // results of cookies per hour need to be displayed on the page in an unordered list with a total calculated sales
 
+//modeling out the elements I will need in the DOM
+const ul_salesFirstAndPike = document.getElementById('salesFirstAndPike');
+const ul_salesSeatacAirport = document.getElementById('salesSeatacAiport');
+const ul_salesCapitolHill = document.getElementById('salesCapitolHill');
+const ul_salesSeattleCenter = document.getElementById('salesSeattleCenter');
+const ul_salesAlki = document.getElementById('salesAlki');
+
 //takes in a stores min and max customers and generates a random number of customers per hour
 let customerNumber = function(store){
   return Math.floor(Math.random() * (store.maxCust - store.minCust) + store.minCust);
@@ -15,6 +22,7 @@ let cookiesSold = function(store){
   return Math.floor(customerNumber(store) * store.avgCookies);
 };
 //logs the cookies sold each hour and pushes them on to the store as an object
+
 let cookiesPerDay = function(store){
   let amPM = 'AM';
   let total = 0;
@@ -23,16 +31,16 @@ let cookiesPerDay = function(store){
     cookiesThisHour += cookiesSold(store);
     if(i < 12){
       total += cookiesThisHour;
-			store.cookiesSold[`${i} ${amPM}`] = cookiesThisHour;
-		}else if(i === 12){
-			amPM = 'PM';
-			store.cookiesSold[`${i} ${amPM}`] = cookiesThisHour;
-		} else if(i > 13){
-			store.cookiesSold[`${i - 13} ${amPM}`] = cookiesThisHour;
+      store.cookiesSold[`${i} ${amPM}`] = cookiesThisHour;
+    }else if(i === 12){
+      amPM = 'PM';
+      store.cookiesSold[`${i} ${amPM}`] = cookiesThisHour;
+    } else if(i > 13){
+      store.cookiesSold[`${i - 13} ${amPM}`] = cookiesThisHour;
       total += cookiesThisHour;
     }
   }
-  store.cookiesSold.total = total;
+  store.cookiesSold.Total = total;
 };
 
 let firstAndPike ={
@@ -79,5 +87,5 @@ let alki ={
 
   }
 };
-cookiesPerDay(alki);
-console.log(alki.cookiesSold);
+cookiesPerDay(firstAndPike);
+console.log(firstAndPike.cookiesSold);
