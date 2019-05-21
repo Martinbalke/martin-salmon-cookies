@@ -8,7 +8,7 @@
 
 //modeling out the elements I will need in the DOM
 const ul_salesFirstAndPike = document.getElementById('salesFirstAndPike');
-const ul_salesSeatacAirport = document.getElementById('salesSeatacAiport');
+const ul_salesSeatacAirport = document.getElementById('salesSeatacAirport');
 const ul_salesCapitolHill = document.getElementById('salesCapitolHill');
 const ul_salesSeattleCenter = document.getElementById('salesSeattleCenter');
 const ul_salesAlki = document.getElementById('salesAlki');
@@ -31,16 +31,16 @@ let cookiesPerDay = function(store){
     cookiesThisHour += cookiesSold(store);
     if(i < 12){
       total += cookiesThisHour;
-      store.cookiesSold[`${i} ${amPM}`] = cookiesThisHour;
+      store.cookiesSold[`${i}:00 ${amPM} `] = cookiesThisHour;
     }else if(i === 12){
       amPM = 'PM';
-      store.cookiesSold[`${i} ${amPM}`] = cookiesThisHour;
+      store.cookiesSold[`${i}:00 ${amPM} `] = cookiesThisHour;
     } else if(i > 13){
-      store.cookiesSold[`${i - 13} ${amPM}`] = cookiesThisHour;
+      store.cookiesSold[`${i - 13}:00 ${amPM} `] = cookiesThisHour;
       total += cookiesThisHour;
     }
   }
-  store.cookiesSold.Total = total;
+  store.cookiesSold[`Total: `] = total;
 };
 
 let firstAndPike ={
@@ -87,5 +87,31 @@ let alki ={
 
   }
 };
+
+//calling the function and populating the cookies sold objects
 cookiesPerDay(firstAndPike);
-console.log(firstAndPike.cookiesSold);
+cookiesPerDay(seattleCenter);
+cookiesPerDay(seaTacAirport);
+cookiesPerDay(capitolHill);
+cookiesPerDay(alki);
+
+
+//iterates over the nested objects inside each store and displays them inside of a li which is appended to the parent UL
+const iterateAndDisplay = function(obj, location){
+  Object.keys(obj).forEach( function(key){
+    let docLI = document.createElement('li');
+    docLI.appendChild(document.createTextNode(`${key}${obj[key]}`));
+    location.appendChild(docLI);
+ 
+
+  });
+};
+
+//calling the function to display all cookies sold as LI
+iterateAndDisplay(firstAndPike.cookiesSold, ul_salesFirstAndPike);
+iterateAndDisplay(seattleCenter.cookiesSold, ul_salesSeattleCenter);
+iterateAndDisplay(seaTacAirport.cookiesSold, ul_salesSeatacAirport);
+iterateAndDisplay(capitolHill.cookiesSold, ul_salesCapitolHill);
+iterateAndDisplay(alki.cookiesSold, ul_salesAlki);
+
+
