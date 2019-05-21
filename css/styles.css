@@ -1,0 +1,72 @@
+/* Sales page styling */
+#salesHeader{
+    font-family: 'Pacifico', cursive;
+    text-align: center;
+    font-size: 3em;
+    font-weight: 700;
+}
+#salesDisplay{
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.salesUL{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin: 1%;
+    padding: 1%;
+    width: 150px;
+    border: 2px solid #BC4C34;
+    border-radius: 5px;
+}
+.salesUL h2{
+    font-family: 'Open Sans', sans-serif;
+    color: #C6915D;
+    font-size: 1.5em;
+    margin-bottom: 5px; 
+}
+.salesUL li{
+    padding: 10px;
+    background-color: rgba(208, 201, 194, .25);
+    border: 1px solid #36342B;
+    border-radius: 5px;
+}
+
+/* hompage styling */
+#container{
+background-color: white;
+ display: flex;
+ flex-direction: row;
+ justify-content: space-around;
+ height: 100vh;
+ background-image: url("/images/jon-flobrant-65429-unsplash_1_22.jpg");
+
+
+}
+#leftSide{
+    background-image: url("/images/jon-flobrant-65429-unsplash_1_22.jpg");
+    width: 100vw;
+    background-color: white;
+    clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 0% 100%);
+    
+}
+#rightSide{
+    background-image: url("/images/julian-hochgesang-1178003-unsplash_22.jpg");
+    background-color: black;
+    clip-path: polygon(30% 0%, 100% 0%, 100% 100%, 0% 100%);
+    width: 100vw;
+    
+}
+h1{ 
+ font-size: 3em;
+ font-family: 'Pacifico', cursive;
+ color: white !important;
+ position: relative;
+ top: 30%;
+ left: 30%;
+}
+
+
