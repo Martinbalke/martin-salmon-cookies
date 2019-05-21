@@ -1,4 +1,7 @@
 /* Sales page styling */
+#sales{
+    background-color: #36342B;
+}
 #salesHeader{
     font-family: 'Pacifico', cursive;
     text-align: center;
@@ -40,7 +43,7 @@
 background-color: white;
  display: flex;
  flex-direction: row;
- justify-content: space-around;
+ justify-content: space-between;
  height: 100vh;
  background-image: url("/images/jon-flobrant-65429-unsplash_1_22.jpg");
 
@@ -48,7 +51,7 @@ background-color: white;
 }
 #leftSide{
     background-image: url("/images/jon-flobrant-65429-unsplash_1_22.jpg");
-    width: 100vw;
+    width: 40vw;
     background-color: white;
     clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 0% 100%);
     
@@ -57,8 +60,7 @@ background-color: white;
     background-image: url("/images/julian-hochgesang-1178003-unsplash_22.jpg");
     background-color: black;
     clip-path: polygon(30% 0%, 100% 0%, 100% 100%, 0% 100%);
-    width: 100vw;
-    
+    width: 40vw;
 }
 h1{ 
  font-size: 3em;
