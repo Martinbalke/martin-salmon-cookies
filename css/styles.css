@@ -62,7 +62,7 @@ background-color: white;
     clip-path: polygon(30% 0%, 100% 0%, 100% 100%, 0% 100%);
     width: 40vw;
 }
-h1{ 
+#rightSideh1{ 
  font-size: 3em;
  font-family: 'Pacifico', cursive;
  color: white !important;
