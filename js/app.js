@@ -1,6 +1,7 @@
 'use strict';
 //modeling out the elements I will need in the DOM
 const tbody_salesTableBody = document.getElementById('salesTableBody');
+const tfoot_salesTableFooter = document.getElementById('salesTableFooter');
 
 const timeArray = ['6:00 AM ', '7:00 AM ', '8:00 AM ', '9:00 AM ', '10:00 AM ', '11:00 AM ', '12:00 PM ', '1:00 PM ', '2:00 PM ', '3:00 PM ', '4:00 PM ', '5:00 PM ', '6:00 PM ', '7:00 PM ', '8:00 PM ', 'Total Cookies Sold'];
 
@@ -38,6 +39,7 @@ const alki = new StoreConstructor(2, 16, 4.6);
 //calling the function and populating the cookies sold objects
 [firstAndPike, seattleCenter, seaTacAirport, capitolHill, alki].forEach(cookiesPerDay);
 
+//Displays the timearray as a header of a table on the HTML
 const displayHeader = function(timeArray){
   const tr_Gen = document.createElement('tr');
   tbody_salesTableBody.appendChild(tr_Gen);
@@ -49,6 +51,8 @@ const displayHeader = function(timeArray){
   }
 };
 displayHeader(timeArray);
+
+//creats a tr and populates it with table data for each store in the business
 const storeRows = function(storeCookies){
   const tr_Gen = document.createElement('tr');
   tbody_salesTableBody.appendChild(tr_Gen);
@@ -60,25 +64,20 @@ const storeRows = function(storeCookies){
   }
 };
 [firstAndPike.cookiesSold, seattleCenter.cookiesSold, seaTacAirport.cookiesSold, capitolHill.cookiesSold, alki.cookiesSold].forEach(storeRows);
-// //create table row
-// //itterate over the keys of cookiesSold to make a header
-// //make a total th
 
-
-// //create a table row
-// //create a td with store name
-// // create a td for each value in cookies sold
-// //create a td for the total for that store
-
+const hourTotals = [];
+const totalPerHour = function(time){
+  let allStoresHour = 0;
+  for(let i = 0; i < time.length; i++){
+    allStoresHour += firstAndPike.cookiesSold[i];
+    allStoresHour += seattleCenter.cookiesSold[i];
+    allStoresHour += seaTacAirport.cookiesSold[i];
+    allStoresHour += capitolHill.cookiesSold[i];
+    allStoresHour += alki.cookiesSold[i];
+    hourTotals.push(allStoresHour);
+  }
+};
+totalPerHour(timeArray);
+console.log(hourTotals);
 
 // //create a tr for the total per hour from all stores
-
-
-
-// // const iterateAndDisplay = function(obj, location){
-// //   Object.keys(obj).forEach( function(key){
-// //     let docLI = document.createElement('li');
-// //     docLI.appendChild(document.createTextNode(`${key}${obj[key]}`));
-// //     location.appendChild(docLI);
-// //   });
-// // };
