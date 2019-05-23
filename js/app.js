@@ -1,10 +1,8 @@
 'use strict';
 //modeling out the elements I will need in the DOM
-const ul_salesFirstAndPike = document.getElementById('salesFirstAndPike');
-const ul_salesSeatacAirport = document.getElementById('salesSeatacAirport');
-const ul_salesCapitolHill = document.getElementById('salesCapitolHill');
-const ul_salesSeattleCenter = document.getElementById('salesSeattleCenter');
-const ul_salesAlki = document.getElementById('salesAlki');
+const tbody_salesTableBody = document.getElementById('salesTableBody');
+
+const timeArray = ['6:00 AM ', '7:00 AM ', '8:00 AM ', '9:00 AM ', '10:00 AM ', '11:00 AM ', '12:00 PM ', '1:00 PM ', '2:00 PM ', '3:00 PM ', '4:00 PM ', '5:00 PM ', '6:00 PM ', '7:00 PM ', '8:00 PM ', 'Total Cookies Sold'];
 
 //takes in a stores min and max customers and generates a random number of customers per hour
 let customerNumber = function(store){
@@ -17,29 +15,19 @@ let cookiesSold = function(store){
 //logs the cookies sold each hour and pushes them on to the store as an object
 
 let cookiesPerDay = function(store){
-  let amPM = 'AM';
   let total = 0;
-  for(let i = 6; i < 22; i++){
-    let cookiesThisHour = 0;
-    cookiesThisHour += cookiesSold(store);
-    if(i < 12){
-      total += cookiesThisHour;
-      store.cookiesSold[`${i}:00 ${amPM} `] = cookiesThisHour;
-    }else if(i === 12){
-      amPM = 'PM';
-      store.cookiesSold[`${i}:00 ${amPM} `] = cookiesThisHour;
-    } else if(i > 13){
-      store.cookiesSold[`${i - 13}:00 ${amPM} `] = cookiesThisHour;
-      total += cookiesThisHour;
-    }
+  for(let i = 0; i < timeArray.length; i++){
+    let cookiesThisHour = cookiesSold(store);
+    store.cookiesSold.push(cookiesThisHour);
+    total += cookiesThisHour;
   }
-  store.cookiesSold[`Total: `] = total;
+  store.cookiesSold.push(total);
 };
 function StoreConstructor(minCust, maxCust, avgCookies){
   this.minCust = minCust;
   this.maxCust = maxCust;
   this.avgCookies = avgCookies;
-  this.cookiesSold = {};
+  this.cookiesSold = [];
 }
 const firstAndPike = new StoreConstructor(23, 65, 6.3);
 const seaTacAirport = new StoreConstructor(3, 24, 1.2);
@@ -50,18 +38,47 @@ const alki = new StoreConstructor(2, 16, 4.6);
 //calling the function and populating the cookies sold objects
 [firstAndPike, seattleCenter, seaTacAirport, capitolHill, alki].forEach(cookiesPerDay);
 
-//iterates over the nested objects inside each store and displays them inside of a li which is appended to the parent UL
-const iterateAndDisplay = function(obj, location){
-  Object.keys(obj).forEach( function(key){
-    let docLI = document.createElement('li');
-    docLI.appendChild(document.createTextNode(`${key}${obj[key]}`));
-    location.appendChild(docLI);
-  });
+const displayHeader = function(timeArray){
+  const tr_Gen = document.createElement('tr');
+  tbody_salesTableBody.appendChild(tr_Gen);
+  for(let i = 0; i < timeArray.length; i++){
+    const th_Gen = document.createElement('th');
+    tr_Gen.appendChild(th_Gen);
+    const textNode = document.createTextNode(`${timeArray[i]}`);
+    th_Gen.appendChild(textNode);
+  }
 };
+displayHeader(timeArray);
+const storeRows = function(storeCookies){
+  const tr_Gen = document.createElement('tr');
+  tbody_salesTableBody.appendChild(tr_Gen);
+  for(let i = 0; i < storeCookies.length; i++){
+    const td_Gen = document.createElement('td');
+    tr_Gen.appendChild(td_Gen);
+    const textNode = document.createTextNode(`${storeCookies[i]}`);
+    td_Gen.appendChild(textNode);
+  }
+};
+[firstAndPike.cookiesSold, seattleCenter.cookiesSold, seaTacAirport.cookiesSold, capitolHill.cookiesSold, alki.cookiesSold].forEach(storeRows);
+// //create table row
+// //itterate over the keys of cookiesSold to make a header
+// //make a total th
 
-//calling the function to display all cookies sold as LI
-iterateAndDisplay(firstAndPike.cookiesSold, ul_salesFirstAndPike);
-iterateAndDisplay(seattleCenter.cookiesSold, ul_salesSeattleCenter);
-iterateAndDisplay(seaTacAirport.cookiesSold, ul_salesSeatacAirport);
-iterateAndDisplay(capitolHill.cookiesSold, ul_salesCapitolHill);
-iterateAndDisplay(alki.cookiesSold, ul_salesAlki);
+
+// //create a table row
+// //create a td with store name
+// // create a td for each value in cookies sold
+// //create a td for the total for that store
+
+
+// //create a tr for the total per hour from all stores
+
+
+
+// // const iterateAndDisplay = function(obj, location){
+// //   Object.keys(obj).forEach( function(key){
+// //     let docLI = document.createElement('li');
+// //     docLI.appendChild(document.createTextNode(`${key}${obj[key]}`));
+// //     location.appendChild(docLI);
+// //   });
+// // };
