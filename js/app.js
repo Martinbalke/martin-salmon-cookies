@@ -65,7 +65,8 @@ const storeRows = function(storeCookies){
 };
 [firstAndPike.cookiesSold, seattleCenter.cookiesSold, seaTacAirport.cookiesSold, capitolHill.cookiesSold, alki.cookiesSold].forEach(storeRows);
 
-const hourTotals = [];
+//populates hourstotal array with the total from each store
+const hourTotals = ['Total'];
 const totalPerHour = function(time){
   let allStoresHour = 0;
   for(let i = 0; i < time.length; i++){
@@ -78,6 +79,18 @@ const totalPerHour = function(time){
   }
 };
 totalPerHour(timeArray);
-console.log(hourTotals);
 
 // //create a tr for the total per hour from all stores
+const tfootGen = function(array){
+  const tr_Gen = document.createElement('tr');
+  tfoot_salesTableFooter.appendChild(tr_Gen);
+  for(let i = 0; i<array.length; i++){
+    let td_Gen = document.createElement('td');
+    let textNode = document.createTextNode(array[i]);
+    td_Gen.appendChild(textNode);
+    tr_Gen.appendChild(td_Gen);
+
+  }
+};
+
+tfootGen(hourTotals);
