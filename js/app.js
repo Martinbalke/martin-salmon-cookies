@@ -17,24 +17,44 @@ let cookiesSold = function(store){
 
 let cookiesPerDay = function(store){
   let total = 0;
-  for(let i = 0; i < timeArray.length; i++){
+  for(let i = 0; i < timeArray.length-1; i++){
     let cookiesThisHour = cookiesSold(store);
     store.cookiesSold.push(cookiesThisHour);
     total += cookiesThisHour;
   }
   store.cookiesSold.push(total);
 };
-function StoreConstructor(minCust, maxCust, avgCookies){
+function StoreConstructor(name, minCust, maxCust, avgCookies){
+  this.name = name;
   this.minCust = minCust;
   this.maxCust = maxCust;
   this.avgCookies = avgCookies;
   this.cookiesSold = [];
 }
-const firstAndPike = new StoreConstructor(23, 65, 6.3);
-const seaTacAirport = new StoreConstructor(3, 24, 1.2);
-const seattleCenter = new StoreConstructor(11, 38, 2.3);
-const capitolHill = new StoreConstructor(20, 38, 2.3);
-const alki = new StoreConstructor(2, 16, 4.6);
+
+//creates a tr and populates it with table data for each store in the business
+StoreConstructor.prototype.storeRows = function(){
+  const tr_Gen = document.createElement('tr');
+  tbody_salesTableBody.appendChild(tr_Gen);
+  let td_Gen = document.createElement('td');
+  let textNode = document.createTextNode(`${this.name}`);
+  td_Gen.appendChild(textNode);
+  tr_Gen.appendChild(td_Gen);
+  
+  for(let i = 0; i < this.cookiesSold.length; i++){
+    let td_Gen = document.createElement('td');
+    tr_Gen.appendChild(td_Gen);
+    let textNode = document.createTextNode(`${this.cookiesSold[i]}`);
+    td_Gen.appendChild(textNode);
+
+  }
+};
+
+const firstAndPike = new StoreConstructor('First and Pike', 23, 65, 6.3);
+const seaTacAirport = new StoreConstructor('SeaTac Airport', 3, 24, 1.2);
+const seattleCenter = new StoreConstructor('Seattle Center' ,11, 38, 2.3);
+const capitolHill = new StoreConstructor('Capitol Hill', 20, 38, 2.3);
+const alki = new StoreConstructor('Alki', 2, 16, 4.6);
 
 //calling the function and populating the cookies sold objects
 [firstAndPike, seattleCenter, seaTacAirport, capitolHill, alki].forEach(cookiesPerDay);
@@ -43,33 +63,28 @@ const alki = new StoreConstructor(2, 16, 4.6);
 const displayHeader = function(timeArray){
   const tr_Gen = document.createElement('tr');
   tbody_salesTableBody.appendChild(tr_Gen);
+  let th_Gen = document.createElement('th');
+  tr_Gen.appendChild(th_Gen);
+  let textNode = document.createTextNode('');
+  th_Gen.appendChild(textNode);
+
   for(let i = 0; i < timeArray.length; i++){
-    const th_Gen = document.createElement('th');
+    let th_Gen = document.createElement('th');
     tr_Gen.appendChild(th_Gen);
-    const textNode = document.createTextNode(`${timeArray[i]}`);
+    let textNode = document.createTextNode(`${timeArray[i]}`);
     th_Gen.appendChild(textNode);
   }
 };
 displayHeader(timeArray);
 
-//creats a tr and populates it with table data for each store in the business
-const storeRows = function(storeCookies){
-  const tr_Gen = document.createElement('tr');
-  tbody_salesTableBody.appendChild(tr_Gen);
-  for(let i = 0; i < storeCookies.length; i++){
-    const td_Gen = document.createElement('td');
-    tr_Gen.appendChild(td_Gen);
-    const textNode = document.createTextNode(`${storeCookies[i]}`);
-    td_Gen.appendChild(textNode);
-  }
-};
-[firstAndPike.cookiesSold, seattleCenter.cookiesSold, seaTacAirport.cookiesSold, capitolHill.cookiesSold, alki.cookiesSold].forEach(storeRows);
+//populating the table with store tows
+firstAndPike.storeRows(); seattleCenter.storeRows(); seaTacAirport.storeRows(); capitolHill.storeRows(); alki.storeRows();
 
 //populates hourstotal array with the total from each store
 const hourTotals = ['Total'];
 const totalPerHour = function(time){
-  let allStoresHour = 0;
   for(let i = 0; i < time.length; i++){
+    let allStoresHour = 0;
     allStoresHour += firstAndPike.cookiesSold[i];
     allStoresHour += seattleCenter.cookiesSold[i];
     allStoresHour += seaTacAirport.cookiesSold[i];
