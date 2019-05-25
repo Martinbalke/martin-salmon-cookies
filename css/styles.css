@@ -10,14 +10,29 @@
     color:#f0ffff;
     margin: 10px;
 }
+#newStoreInput{
+    color: #c39a7e;
+    display: grid;
+    place-content: center;
+    height: 100px;
+    background-color: rgba(18, 21, 14, .75);
+    border: 2px solid white;
+    margin: 1em;
+    padding: 1.2em;
+}
+#newStoreInput legend{
+    font-family: 'Pacifico', cursive;
+    text-align: center;
+    font-size: 1.5em;
+    padding-bottom: 1em;
+}
 #salesTable{
  width: 80vw;
  margin-left: 10vw;
  margin-right: 10vw;
- display: flex;
- flex-wrap: wrap;
 }
 #salesTable th, td{
+    margin-top: 100px;
     text-align: center;
     padding: 5px;
     height: 50px;
