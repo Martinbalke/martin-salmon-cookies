@@ -1,41 +1,61 @@
 /* Sales page styling */
 #sales{
-    background-color: #36342B;
+    background-image: url(/images/BakingBackgroundSales_1_30.jpg);
 }
 #salesHeader{
     font-family: 'Pacifico', cursive;
     text-align: center;
-    font-size: 3em;
+    font-size: 4em;
     font-weight: 700;
+    color:#f0ffff;
+    margin: 10px;
 }
-#salesDisplay{
-    font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
+#newStoreInput{
+    color: #c39a7e;
+    display: grid;
+    place-content: center;
+    height: 100px;
+    background-color: rgba(18, 21, 14, .75);
+    border: 2px solid white;
+    margin: 1em;
+    padding: 1.2em;
 }
-.salesUL{
+#newStoreInput legend{
+    font-family: 'Pacifico', cursive;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    margin: 1%;
-    padding: 1%;
-    width: 150px;
-    border: 2px solid #BC4C34;
-    border-radius: 5px;
-}
-.salesUL h2{
-    font-family: 'Open Sans', sans-serif;
-    color: #C6915D;
     font-size: 1.5em;
-    margin-bottom: 5px; 
+    padding-bottom: 1em;
 }
-.salesUL li{
-    padding: 10px;
-    background-color: rgba(208, 201, 194, .25);
-    border: 1px solid #36342B;
+#salesTable{
+ width: 80vw;
+ margin-left: 10vw;
+ margin-right: 10vw;
+}
+#salesTable th, td{
+    margin-top: 100px;
+    text-align: center;
+    padding: 5px;
+    height: 50px;
+    vertical-align: middle;
+
+}
+#salesTable th, tr, td{
+    border: 2px solid whitesmoke;
     border-radius: 5px;
+    background-color: rgba(18, 21, 14, .55);
+    color: #DADCDD;
+    font-family: 'Open Sans', sans-serif;
+  }
+td:nth-child(1){
+    font-family: 'Open Sans', sans-serif;
+    color:#a0a2a0;
+    font-size: 1.5em;
+}
+
+#salesTable th{
+    font-family: 'Open Sans', sans-serif;
+    color: #c39a7e;
+    font-size: 1.5em;
 }
 
 /* hompage styling */
@@ -65,10 +85,9 @@ background-color: white;
 #rightSideh1{ 
  font-size: 3em;
  font-family: 'Pacifico', cursive;
- color: white !important;
+ color: #f0ffff;
  position: relative;
  top: 30%;
  left: 30%;
 }
-
-
+  
