@@ -60,34 +60,66 @@ td:nth-child(1){
 
 /* hompage styling */
 #container{
-background-color: white;
- display: flex;
- flex-direction: row;
- justify-content: space-between;
- height: 100vh;
- background-image: url("/images/jon-flobrant-65429-unsplash_1_22.jpg");
-
-
-}
-#leftSide{
-    background-image: url("/images/jon-flobrant-65429-unsplash_1_22.jpg");
-    width: 40vw;
     background-color: white;
-    clip-path: polygon(0% 0%, 100% 0%, 70% 100%, 0% 100%);
+    align-items: center;
+    background-image: url("/images/BakingBackgroundSales_37.jpg");
     
 }
-#rightSide{
-    background-image: url("/images/julian-hochgesang-1178003-unsplash_22.jpg");
-    background-color: black;
-    clip-path: polygon(30% 0%, 100% 0%, 100% 100%, 0% 100%);
-    width: 40vw;
+h2{
+    font-family: 'Pacifico', cursive;
+    color: #c39a7e;
+    font-size: 2em;
 }
-#rightSideh1{ 
- font-size: 3em;
- font-family: 'Pacifico', cursive;
- color: #f0ffff;
- position: relative;
- top: 30%;
- left: 30%;
+p{
+    color: #DADCDD;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 20px;
 }
-  
+#rightSideLogo h1{
+    font-family: 'Pacifico', cursive;
+    font-size: 4em;
+    font-weight: 700;
+    color:#f0ffff;
+    margin: 10px;
+    display: inline-block;
+    margin: 30px;
+    margin-left: 30vw;
+}
+#mainLogo{
+    position: absolute;
+    margin: 30px;
+}
+.textbox{
+    background-color: rgba(18, 21, 14, .75);
+    border: 1px solid white;
+    border-radius: 10px;
+}
+.textbox img{
+    float: right;
+    border-radius: 5px;
+}
+#rightTextBox{
+padding: 100px;
+margin: 10px;
+}
+#rightTextBox h2{
+    text-align: center;
+    padding: 10px;
+}
+#leftSideTextContainer{
+    height: 45vh;
+    margin: 0 10px;
+    padding: 100px;
+}
+#leftSideTextContainer h2{
+    text-align: center;
+    padding: 10px;
+}
+#merchContainer img{
+    margin: 30px;
+
+}
+#merchContainerImg{
+    display: flex;
+    place-content: center;
+}
