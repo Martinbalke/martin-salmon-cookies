@@ -9,6 +9,7 @@ const form_newStoreForm = document.getElementById('newStoreForm');
 let hourTotals = ['Total'];
 let storeArray = [];
 const timeArray = ['6:00 AM ', '7:00 AM ', '8:00 AM ', '9:00 AM ', '10:00 AM ', '11:00 AM ', '12:00 PM ', '1:00 PM ', '2:00 PM ', '3:00 PM ', '4:00 PM ', '5:00 PM ', '6:00 PM ', '7:00 PM ', '8:00 PM ', 'Total Cookies Sold'];
+
 //constructor function to create a new instance of a store.
 function StoreConstructor(name, minCust, maxCust, avgCookies){
   this.name = name;
@@ -42,14 +43,6 @@ const seattleCenter = new StoreConstructor('Seattle Center' ,11, 38, 2.3);
 const capitolHill = new StoreConstructor('Capitol Hill', 20, 38, 2.3);
 const alki = new StoreConstructor('Alki', 2, 16, 4.6);
 
-//takes in a stores min and max customers and generates a random number of customers per hour
-function customerNumber(store){
-  return Math.ceil(Math.random() * (store.maxCust - store.minCust + 1) + store.minCust);
-}
-//generates a random number of cookies sold at each store
-function cookiesSold(store){
-  return Math.ceil(customerNumber(store) * store.avgCookies);
-}
 //logs the cookies sold each hour and pushes them on to the store as an object
 
 function cookiesPerDay(store){
@@ -62,26 +55,6 @@ function cookiesPerDay(store){
   store.cookiesSold.push(total);
 }
 
-
-
-// creates an event listener for my input forms and then pushes that inside of the store constructor
-form_newStoreForm.addEventListener('submit', populateNewStore);
-function populateNewStore(e){
-  e.preventDefault();
-  let storeName = event.target.storeName.value;
-  let minCust = event.target.minCust.value;
-  let maxCust = event.target.maxCust.value;
-  let avgCookies = event.target.avgCookies.value;
-  let newsStore = new StoreConstructor(storeName, minCust, maxCust, avgCookies);
-
-  newsStore.storeRows();
-  totalPerHour();
-  tfoot_salesTableFooter.innerHTML = '';
-  tfootGen(hourTotals);
-}
-
-console.log(storeArray);
-
 //Displays the timearray as a header of a table on the HTML
 function displayHeader(timeArray){
   const tr_Gen = document.createElement('tr');
@@ -90,7 +63,6 @@ function displayHeader(timeArray){
   tr_Gen.appendChild(th_Gen);
   let textNode = document.createTextNode('');
   th_Gen.appendChild(textNode);
-
   for(let i = 0; i < timeArray.length; i++){
     let th_Gen = document.createElement('th');
     tr_Gen.appendChild(th_Gen);
@@ -100,13 +72,20 @@ function displayHeader(timeArray){
 }
 
 
+//takes in a stores min and max customers and generates a random number of customers per hour
+function customerNumber(store){
+  return Math.ceil(Math.random() * (store.maxCust - store.minCust + 1) + store.minCust);
+}
+//generates a random number of cookies sold at each store
+function cookiesSold(store){
+  return Math.ceil(customerNumber(store) * store.avgCookies);
+}
+//displaying the store rows in the storeArray.
 function storeDisplay(){
   for (let i = 0;  i < storeArray.length; i++){
     storeArray[i].storeRows();
-  } 
+  }
 }
-// //populating the table with store tows
-// firstAndPike.storeRows(); seattleCenter.storeRows(); seaTacAirport.storeRows(); capitolHill.storeRows(); alki.storeRows();
 
 // loop over the each store in the array, grab a store, read its cookies sold at [i] and add it to the total
 function totalPerHour(){
@@ -133,6 +112,25 @@ function tfootGen(array){
     
   }
 }
+
+
+// creates an event listener for my input forms and then pushes that inside of the store constructor
+form_newStoreForm.addEventListener('submit', populateNewStore);
+function populateNewStore(e){
+  e.preventDefault();
+  let storeName = event.target.storeName.value;
+  let minCust = event.target.minCust.value;
+  let maxCust = event.target.maxCust.value;
+  let avgCookies = event.target.avgCookies.value;
+  let newsStore = new StoreConstructor(storeName, minCust, maxCust, avgCookies);
+
+  newsStore.storeRows();
+  totalPerHour();
+  tfoot_salesTableFooter.innerHTML = '';
+  tfootGen(hourTotals);
+}
+
+
 
 displayHeader(timeArray);
 totalPerHour();
