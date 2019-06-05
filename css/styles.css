@@ -62,7 +62,7 @@ td:nth-child(1){
 #container{
     background-color: white;
     align-items: center;
-    background-image: url("/images/BakingBackgroundSales_37.jpg");
+    background-image: url(/images/BakingBackgroundSales_37.jpg);
     
 }
 h2{
